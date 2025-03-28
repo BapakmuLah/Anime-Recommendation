@@ -31,12 +31,9 @@ Menjelaskan pernyataan masalah:
 
 ### Goals
 
-Menjelaskan tujuan proyek yang menjawab pernyataan masalah:
 - **Jawaban pernyataan masalah 1:** Mengembangkan sistem rekomendasi yang dapat memberikan rekomendasi anime yang lebih personal dan relevan dengan memanfaatkan gabungan metode Content-Based Filtering (CBF) dan Collaborative Filtering (CF) untuk mengidentifikasi preferensi pengguna dan memberikan rekomendasi yang sesuai.
 - **Jawaban pernyataan masalah 2:** Mengatasi masalah cold-start dengan menggabungkan CBF dan CF dalam pendekatan hybrid serta menggunakan teknik Neural Collaborative Filtering (NCF) yang memungkinkan sistem mempelajari preferensi pengguna secara lebih efisien, bahkan dengan data interaksi yang terbatas.
 - **Jawaban pernyataan masalah 3:** Mengembangkan sistem rekomendasi yang lebih beragam dan akurat dengan memanfaatkan algoritma hybrid yang dapat mengenali pola baru berdasarkan konten dan interaksi sosial, sehingga menghasilkan rekomendasi yang lebih variatif dan tidak terbatas pada satu genre atau tema tertentu.
-
-Semua poin di atas harus diuraikan dengan jelas. Anda bebas menuliskan berapa pernyataan masalah dan juga goals yang diinginkan.
 
 ### Solution statements
 1. Menggunakan **Hybrid Filtering (CBF + CF)**. Pendekatan ini menggabungkan teknik Content-Based Filtering (CBF) dan Collaborative Filtering (CF). CBF berfokus pada rekomendasi berdasarkan kesamaan konten (seperti genre dan tema), sementara CF melihat pola interaksi antar pengguna dan anime.
@@ -237,7 +234,6 @@ _`genre_list` dan `type_encoded` merupakan data kategorial yg sudah di encoded_
    ```
 
 ## Modeling
-Tahapan ini membahas mengenai model sisten rekomendasi yang Anda buat untuk menyelesaikan permasalahan. Sajikan top-N recommendation sebagai output.
 
 **Teknik Sistem Rekomendasi yg digunakan :**
   1. **Hybrid Recommendation (Gabungan Collaborative Filtering + Content-Based Filtering)**
@@ -245,6 +241,8 @@ Tahapan ini membahas mengenai model sisten rekomendasi yang Anda buat untuk meny
 <br>
 
 ### 1. Hybrid Recommendation
+
+_Hybrid Recommendation adalah Teknik Sistem Rekomendasi yg menggabungkan antara 2 Collaborative Filtering dan Content-Based Filtering. Tujuannya supaya model bisa mempelajari Pola dgn lebih kompleks dan lebih terstruktur._
 <br> <br>
 
 **A. Collaborative Filtering**
@@ -261,27 +259,7 @@ Tahapan ini membahas mengenai model sisten rekomendasi yang Anda buat untuk meny
   - Dalam Teknik **Collaborative Filtering**, saya menggunakan Metode **Matrix Factorization** yaitu menggunakan Algoritma **SVD (Singular Value Decomposition)** untuk mencari interaksi antara user dan anime dan mencari kesamaan dari user tsb. <br>
 
   - Setelah dibuat modelnya , misalkan seorang user 1 menyukai Anime ini :
-    
-| user_id | anime_id | user_rating | name                  | genre                                     | type | episodes | anime_rating | members   |
-|---------|----------|-------------|-----------------------|-------------------------------------------|------|----------|--------------|-----------|
-| 1       | 8074     | 10          | Highschool of the Dead | Action, Ecchi, Horror, Supernatural       | TV   | 12       | 7.46         | 535892.0  |
-| 1       | 11617    | 10          | High School DxD       | Comedy, Demons, Ecchi, Harem, Romance, School | TV   | 12       | 7.70         | 398660.0  |
-| 1       | 11757    | 10          | Sword Art Online      | Action, Adventure, Fantasy, Game, Romance | TV   | 25       | 7.83         | 893100.0  |
-| 1       | 15451    | 10          | High School DxD New   | Action, Comedy, Demons, Ecchi, Harem, Romance,...| TV   | 12       | 7.87         | 266657.0  |
 
-**Maka 10 Top rekomendasi anime terbaik untuk user 1 adalah :** 
-| anime_id | name                              | genre                                     | type   | episodes | rating | members  | genre_preprocessed                       | predicted_rating |
-|----------|-----------------------------------|-------------------------------------------|--------|----------|--------|----------|-------------------------------------------|------------------|
-| 2904     | Code Geass: Hangyaku no Lelouch R2 | Action, Drama, Mecha, Military, Sci-Fi, Super ... | TV     | 25       | 8.98   | 572888   | Action, Drama, Mecha, Military, Sci-Fi, Super_... | 9.866580        |
-| 226      | Elfen Lied                        | Action, Drama, Horror, Psychological, Romance,... | TV     | 13       | 7.85   | 623511   | Action, Drama, Horror, Psychological, Romance,... | 9.783011        |
-| 6702     | Fairy Tail                        | Action, Adventure, Comedy, Fantasy, Magic, Sho... | TV     | 175      | 8.22   | 584590   | Action, Adventure, Comedy, Fantasy, Magic, Sho... | 9.757270        |
-| 1575     | Code Geass: Hangyaku no Lelouch   | Action, Mecha, Military, School, Sci-Fi, Super... | TV     | 25       | 8.83   | 715151   | Action, Mecha, Military, School, Sci-Fi, Super... | 9.754623        |
-| 10620    | Mirai Nikki (TV)                  | Action, Mystery, Psychological, Shounen, Super... | TV     | 26       | 8.07   | 657190   | Action, Mystery, Psychological, Shounen, Super... | 9.733267        |
-| 731      | Interstella5555: The 5tory of The 5ecret 5tar ... | Adventure, Drama, Music, Sci-Fi             | Music  | 1        | 8.17   | 31464    | Adventure, Drama, Music, Sci-Fi             | 9.638481        |
-| 16894    | Kuroko no Basket 2nd Season       | Comedy, School, Shounen, Sports            | TV     | 25       | 8.58   | 243325   | Comedy, School, Shounen, Sports            | 9.630045        |
-| 317      | Final Fantasy VII: Advent Children | Action, Fantasy, Super Power                | Movie  | 1        | 7.94   | 138659   | Action, Fantasy, Super_Power                | 9.626753        |
-| 22319    | Tokyo Ghoul                      | Action, Drama, Horror, Mystery, Psychological,... | TV     | 12       | 8.07   | 618056   | Action, Drama, Horror, Mystery, Psychological,... | 9.595076        |
-| 1699     | Romeo x Juliet                   | Drama, Fantasy, Historical, Romance         | TV     | 24       | 7.85   | 91530    | Drama, Fantasy, Historical, Romance         | 9.593245        |
 
 <br>
 ----------------------------------------------------------------------------------------
@@ -291,8 +269,20 @@ Tahapan ini membahas mengenai model sisten rekomendasi yang Anda buat untuk meny
 
   _Content-Based Filtering yaitu teknik dalam sistem rekomendasi yg merekomendasikan sebuah item/produk berdasarkan data history seorang pengguna. misalkan jika pengguna menyukai item A , maka sistem akan merekomendasikan item yg mirip dgn item A ke pengguna._
   - Dalam Teknik **Content-Based Filtering**, saya menggunakan Rumus **Cosine Similarity** untuk mencari Kesamaan/kemiripan antara anime-anime berdasarkan fitur `genre`, `type`, `episodes`, `rating`. bisa juga selain itu menggunakan Rumus **Correlation Pearson** untuk mencari korelasi antar anime tsb <br>
-     ok sekarang kita akan memprediksi hasilnya. misalkan jika user 1 menyukai anime ini :
-    
+<br>
+<br> 
+
+
+**C. Hybrid Models**
+
+![image-97](https://github.com/user-attachments/assets/1db4664b-c1f9-4bb7-9394-619bea7a61a6)
+
+ok selanjutnya kita gabungkan ke 2 model (**Collaborative Filtering** dan **Content-Based Filtering**) yg telah dibuat tsb.
+
+`hybrid_score = cf_weight * cf_score   +   cb_weight * cb_score` <br>
+pada kode tsb, kita menggabungkan score prediksi dari **Collaborative Filtering** dgn **Content-Based Filtering** berdasarkan proporsi 70% / 30%, dimana **Collaborative Filtering** memiliki 70% pengaruh lebih besar dibanding **Content-Based Filtering**.
+<br>
+ok sekarang mari kita prediksi modelnya. Misalkan User 1 menyukai Anime seperti ini : 
 | user_id | anime_id | user_rating | name                  | genre                                     | type | episodes | anime_rating | members   |
 |---------|----------|-------------|-----------------------|-------------------------------------------|------|----------|--------------|-----------|
 | 1       | 8074     | 10          | Highschool of the Dead | Action, Ecchi, Horror, Supernatural       | TV   | 12       | 7.46         | 535892.0  |
@@ -300,7 +290,21 @@ Tahapan ini membahas mengenai model sisten rekomendasi yang Anda buat untuk meny
 | 1       | 11757    | 10          | Sword Art Online      | Action, Adventure, Fantasy, Game, Romance | TV   | 25       | 7.83         | 893100.0  |
 | 1       | 15451    | 10          | High School DxD New   | Action, Comedy, Demons, Ecchi, Harem, Romance,...| TV   | 12       | 7.87         | 266657.0  |
 
-<br> <br> **Maka top 10 rekomendasi anime terbaik untuk user 1 adalah :** <br> <br>
+**Maka , top 10 Anime yg akan direkomendasikan kpd User 1 adalah :**
+| anime_id | name                                | genre                                     | type    | episodes | rating | members  | genre_list                                 | genre_encoded         | type_encoded | genre_preprocessed                         | predicted_rating |
+|----------|-------------------------------------|-------------------------------------------|---------|----------|--------|----------|-------------------------------------------|-----------------------|--------------|-------------------------------------------|------------------|
+| 32281    | Kimi no Na wa.                     | Drama, Romance, School, Supernatural      | Movie   | 1        | 9.37   | 200630   | [Drama, Romance, School, Supernatural]     | [7, 26, 28, 39]       | 0            | Drama, Romance, School, Supernatural       | 9.889308         |
+| 2952     | Final Fantasy VII: Advent Children Complete | Action, Fantasy, Super Power          | OVA     | 1        | 8.17   | 77111    | [Action, Fantasy, Super Power]             | [1, 9, 38]            | 3            | Action, Fantasy, Super_Power               | 9.696853         |
+| 6505     | There She Is!!                     | Comedy, Romance                           | ONA     | 5        | 8.11   | 13935    | [Comedy, Romance]                          | [4, 26]               | 2            | Comedy, Romance                            | 9.514187         |
+| 31240    | Re:Zero kara Hajimeru Isekai Seikatsu | Drama, Fantasy, Psychological, Thriller | TV      | 25       | 8.64   | 355839   | [Drama, Fantasy, Psychological, Thriller]  | [7, 9, 25, 40]        | 5            | Drama, Fantasy, Psychological, Thriller    | 9.477084         |
+| 23273    | Shigatsu wa Kimi no Uso            | Drama, Music, Romance, School, Shounen    | TV      | 22       | 8.92   | 416397   | [Drama, Music, Romance, School, Shounen]   | [7, 21, 26, 28, 33]   | 5            | Drama, Music, Romance, School, Shounen     | 9.454091         |
+| 820      | Ginga Eiyuu Densetsu               | Drama, Military, Sci-Fi, Space            | OVA     | 110      | 9.11   | 80679    | [Drama, Military, Sci-Fi, Space]           | [7, 20, 29, 36]       | 3            | Drama, Military, Sci-Fi, Space             | 9.452014         |
+| 317      | Final Fantasy VII: Advent Children | Action, Fantasy, Super Power              | Movie   | 1        | 7.94   | 138659   | [Action, Fantasy, Super Power]             | [1, 9, 38]            | 0            | Action, Fantasy, Super_Power               | 9.435380         |
+| 28977    | Gintama°                          | Action, Comedy, Historical, Parody, Samurai, S... | TV      | 51       | 9.25   | 114262   | [Action, Comedy, Historical, Parody, Samurai, ...| [1, 4, 13, 23, 27, 29, 33] | 5            | Action, Comedy, Historical, Parody, Samurai, ...| 9.392036         |
+| 6702     | Fairy Tail                         | Action, Adventure, Comedy, Fantasy, Magic, Sho...| TV      | 175      | 8.22   | 584590   | [Action, Adventure, Comedy, Fantasy, Magic, Sho...| [1, 2, 4, 9, 17, 33] | 5            | Action, Adventure, Comedy, Fantasy, Magic, Sho...| 9.391754         |
+| 11981    | Mahou Shoujo Madoka★Magica Movie 3: Hangyaku no Monogatari | Drama, Magic, Psychological, Thriller | Movie   | 1        | 8.50   | 135735   | [Drama, Magic, Psychological, Thriller]    | [7, 17, 25, 40]        | 0            | Drama, Magic, Psychological, Thriller      | 9.374785         |
+
+<br>
 
 **Kelebihan :**
 
@@ -311,35 +315,147 @@ Tahapan ini membahas mengenai model sisten rekomendasi yang Anda buat untuk meny
 1. Hybrid Recommendation membutuhkan kompleksitas yg tinggi dan waktu pelatihan yg lama dalam melatih data.
 2. Kinerja nya bias lebih lambat dibanding Teknik dasarnya (yaitu CBF / CF)
 <br> <br>
+---------------------------------------------------------------------------------
 
-| anime_id | name                                | genre                                     | type    | episodes | rating | members  | genre_preprocessed                       | type_encoded | genre_encoded               | predicted_rating |
-|----------|-------------------------------------|-------------------------------------------|---------|----------|--------|----------|-------------------------------------------|--------------|-----------------------------|------------------|
-|          | Fairy Tail                         | Action, Adventure, Comedy, Fantasy, Magic, Sho...| TV      | 175      | 8.22   | 584590   | [Action, Adventure, Comedy, Fantasy, Magic, Sho...| 5            | [1, 2, 4, 9, 17, 33]       | 9.977149         |
-| 32281    | Kimi no Na wa.                     | Drama, Romance, School, Supernatural      | Movie   | 1        | 9.37   | 200630   | [Drama, Romance, School, Supernatural]      | 0            | [7, 26, 28, 39]             | 9.974690         |
-| 28851    | Koe no Katachi                     | Drama, School, Shounen                    | Movie   | 1        | 9.05   | 102733   | [Drama, School, Shounen]                    | 0            | [7, 28, 33]                 | 9.968632         |
-| 22043    | Fairy Tail (2014)                  | Action, Adventure, Comedy, Fantasy, Magic, Sho...| TV      | 102      | 8.25   | 255076   | [Action, Adventure, Comedy, Fantasy, Magic, Sho...| 5            | [1, 2, 4, 9, 17, 33]       | 9.963638         |
-| 30654    | Ansatsu Kyoushitsu (TV) 2nd Season | Action, Comedy, School, Shounen           | TV      | 25       | 8.68   | 176475   | [Action, Comedy, School, Shounen]           | 5            | [1, 4, 28, 33]              | 9.958812         |
-| 28977    | Gintama°                          | Action, Comedy, Historical, Parody, Samurai, S...| TV      | 51       | 9.25   | 114262   | [Action, Comedy, Historical, Parody, Samurai, ... | 5            | [1, 4, 13, 23, 27, 29, 33] | 9.949050         |
-| 24703    | High School DxD BorN               | Action, Comedy, Demons, Ecchi, Harem, Romance,...| TV      | 12       | 7.71   | 192171   | [Action, Comedy, Demons, Ecchi, Harem, Romance...| 5            | [1, 4, 6, 8, 11, 26, 28]   | 9.942084         |
-| 32935    | Haikyuu!!: Karasuno Koukou VS Shiratorizawa Ga... | Comedy, Drama, School, Shounen, Sports   | TV      | 10       | 9.15   | 93351    | [Comedy, Drama, School, Shounen, Sports]   | 5            | [4, 7, 28, 33, 37]          | 9.941214         |
-| 1479     | City Hunter: Kinkyuu Namachuukei!? Kyouakuhan ... | Shounen                                 | Special | 1        | 7.60   | 2506     | [Shounen]                                 | 4            | [33]                        | 9.940308         |
-| 4155     | One Piece Film: Strong World       |                                           |         |          |        |          |                                           |              |                             |                  |
+### 2. Neural Collaborative Filtering 
+_Neural Collaborative Filtering (NCF) adalah varians dari Collaborative Filtering yg menggunakan pendekatan Neural Network untuk membuat sistem rekomendasi dalam melihat pola interaksi antara User data dgn Item data.__
+![1_Tqk7Q2q7wsr6MLF8Xl-emg](https://github.com/user-attachments/assets/b450cb73-defa-45ba-9a12-cea530f488d6)
 
-    
-**Rubrik/Kriteria Tambahan (Opsional)**: 
-- Menyajikan dua solusi rekomendasi dengan algoritma yang berbeda.
-- Menjelaskan kelebihan dan kekurangan dari solusi/pendekatan yang dipilih.
+<br>
+
+**Neural Collaborative Filtering** menggunakan **Teknik Embedding** untuk mengubah nilai kelas/categori menjadi sebuah vector latent/vektor numerik yg merepresentasikan Hubungan Semantik antara fitur tsb.
+![output](https://github.com/user-attachments/assets/79d5482f-245b-4f37-880a-955d580249f5)
+
+
+Setelah itu saya melakukan pelatihan terhadap Arsitektur Neural Network yg telah saya buat.
+ok sekarang mari kita prediksi modelnya. Misalkan User 1 menyukai Anime seperti ini : 
+| user_id | anime_id | user_rating | name                  | genre                                     | type | episodes | anime_rating | members   |
+|---------|----------|-------------|-----------------------|-------------------------------------------|------|----------|--------------|-----------|
+| 1       | 8074     | 10          | Highschool of the Dead | Action, Ecchi, Horror, Supernatural       | TV   | 12.0     | 7.46         | 535892.0  |
+| 1       | 11617    | 10          | High School DxD       | Comedy, Demons, Ecchi, Harem, Romance, School | TV   | 12.0     | 7.70         | 398660.0  |
+| 1       | 11757    | 10          | Sword Art Online      | Action, Adventure, Fantasy, Game, Romance | TV   | 25.0     | 7.83         | 893100.0  |
+| 1       | 15451    | 10          | High School DxD New   | Action, Comedy, Demons, Ecchi, Harem, Romance...| TV   | 12.0     | 7.87         | 266657.0  |
+
+**Maka , top 10 Anime yg akan direkomendasikan kpd User 1 adalah :**
+| anime_id | name                                | genre                                     | type    | episodes | rating | members  | genre_list                                 | type_encoded | genre_encoded               | prediction |
+|----------|-------------------------------------|-------------------------------------------|---------|----------|--------|----------|-------------------------------------------|--------------|-----------------------------|------------|
+| 6702     | Fairy Tail                         | Action, Adventure, Comedy, Fantasy, Magic, Sho...| TV      | 175      | 8.22   | 584590   | [Action, Adventure, Comedy, Fantasy, Magic, Sho...| 5            | [1, 2, 4, 9, 17, 33]       | 9.977149   |
+| 32281    | Kimi no Na wa.                     | Drama, Romance, School, Supernatural      | Movie   | 1        | 9.37   | 200630   | [Drama, Romance, School, Supernatural]     | 0            | [7, 26, 28, 39]             | 9.974690   |
+| 28851    | Koe no Katachi                     | Drama, School, Shounen                    | Movie   | 1        | 9.05   | 102733   | [Drama, School, Shounen]                   | 0            | [7, 28, 33]                 | 9.968632   |
+| 22043    | Fairy Tail (2014)                  | Action, Adventure, Comedy, Fantasy, Magic, Sho...| TV      | 102      | 8.25   | 255076   | [Action, Adventure, Comedy, Fantasy, Magic, Sho...| 5            | [1, 2, 4, 9, 17, 33]       | 9.963638   |
+| 30654    | Ansatsu Kyoushitsu (TV) 2nd Season | Action, Comedy, School, Shounen           | TV      | 25       | 8.68   | 176475   | [Action, Comedy, School, Shounen]          | 5            | [1, 4, 28, 33]              | 9.958812   |
+| 28977    | Gintama°                          | Action, Comedy, Historical, Parody, Samurai, S...| TV      | 51       | 9.25   | 114262   | [Action, Comedy, Historical, Parody, Samurai, ...| 5            | [1, 4, 13, 23, 27, 29, 33] | 9.949050   |
+| 24703    | High School DxD BorN               | Action, Comedy, Demons, Ecchi, Harem, Romance,...| TV      | 12       | 7.71   | 192171   | [Action, Comedy, Demons, Ecchi, Harem, Romance...| 5            | [1, 4, 6, 8, 11, 26, 28]   | 9.942084   |
+| 32935    | Haikyuu!!: Karasuno Koukou VS Shiratorizawa Ga...| Comedy, Drama, School, Shounen, Sports   | TV      | 10       | 9.15   | 93351    | [Comedy, Drama, School, Shounen, Sports]   | 5            | [4, 7, 28, 33, 37]          | 9.941214   |
+| 1479     | City Hunter: Kinkyuu Namachuukei!? Kyouakuhan ...| Shounen                                 | Special | 1        | 7.60   | 2506     | [Shounen]                                 | 4            | [33]                        | 9.940308   |
+| 4155     | One Piece Film: Strong World       | Action, Adventure, Comedy, Drama, Fantasy, Sho...| Movie   | 1        | 8.42   | 85020    | [Action, Adventure, Comedy, Drama, Fantasy, Sho...| 0            | [1, 2, 4, 7, 9, 33]        | 9.937351   |
+<br> <br>
+
+**Kelebihan :**
+1. Bisa menangkap Hubungan data yg Non-Linear
+2. Menggunakan Arsitektur Neural Network yg mana bisa dimodifikasi model nya sesuai kebutuhan dan Fleksibel
+3. Menggunakan Teknik Embedding untuk Melihat Hubungan dan kesamaan antar User yg lebih kompleks
+<br>
+
+**Kelemahan :**
+1. Memiliki waktu pelatihan yg lebih lama dibanding **Hybrid Recommendation** jika Arsitektur nya sangat kompleks dan terdiri dari banyak Layer
+2. Cenderung Overfitting jika terlalu Banyak Neuron dan layer
+<br> <br>
+
+-----------------------------------------------------------------------------------
 
 ## Evaluation
-Pada bagian ini Anda perlu menyebutkan metrik evaluasi yang digunakan. Kemudian, jelaskan hasil proyek berdasarkan metrik evaluasi tersebut.
 
-Ingatlah, metrik evaluasi yang digunakan harus sesuai dengan konteks data, problem statement, dan solusi yang diinginkan.
+**Karena Model berbentuk Regresi, maka Ada beberapa Metrics Evaluasi yg digunakan untuk mengevaluasi hasil model ini :** <br>
+1. Mean Squared Error (MSE)
+2. Mean Absolute Error (MAE)
 
-**Rubrik/Kriteria Tambahan (Opsional)**: 
-- Menjelaskan formula metrik dan bagaimana metrik tersebut bekerja.
+--------------------------------------------------------
+
+### 1. Mean Squared Error (MSE)
+**Mean Squared Error (MSE)** adalah salah satu metode yang digunakan untuk mengukur seberapa besar perbedaan antara nilai yang diprediksi dan nilai aktual dalam  model regresi atau sistem prediksi. MSE menghitung rata-rata kuadrat dari selisih antara prediksi dan nilai aktual, yang memberikan gambaran seberapa besar        kesalahan model dalam memprediksi hasil. <br>
+Dalam sistem rekomendasi, MSE digunakan untuk mengukur seberapa baik model rekomendasi dalam memprediksi rating yang diberikan oleh pengguna terhadap item (Anime).
+<br>
+
+   Formula :
+
+$$MSE = \frac{1}{n} \sum_{i=1}^{n} (y_i - \hat{y}_i)^2$$
+
+Di mana:
+
+- y{i} adalah **nilai aktual**
+- y_hat{i} adalah **nilai prediksi**
+- n adalah **jumlah data**
+
+### 2. Mean Absolute Error (MAE)
+**Mean Absolute Error (MAE)** adalah metrik yang digunakan untuk mengukur rata-rata kesalahan absolut antara nilai prediksi dan nilai aktual. Berbeda dengan MSE (Mean Squared Error) yang mengukur kesalahan kuadrat, MAE menghitung selisih absolut antara nilai yang diprediksi dan nilai yang sebenarnya. Dengan kata lain, MAE memberikan gambaran tentang seberapa besar kesalahan prediksi dalam unit yang sama dengan data asli. <br>
+
+Dalam sistem rekomendasi, MAE digunakan untuk menilai kualitas prediksi yang dilakukan oleh sistem dalam merekomendasikan item kepada pengguna. Jika sistem berhasil memprediksi rating atau preferensi pengguna dengan tingkat kesalahan yang rendah, MAE akan menjadi lebih kecil. Sebaliknya, jika prediksi jauh dari kenyataan, MAE akan meningkat.
+<br>
+
+Formula : 
+
+Rumus MAE adalah:
+
+$$
+MAE = \frac{1}{n} \sum_{i=1}^{n} |y_i - \hat{y}_i|
+$$
+
+Di mana:
+- y{i} adalah **nilai aktual**
+- y_hat{i} adalah **nilai prediksi**
+- n adalah **jumlah data**
+- |y{i} - y_hat{i}| adalah **selisih absolut antara nilai aktual dan nilai prediksi**
+<br>
+
+### Hasil Evaluasi
+setelah kita Mengevaluasi ke-2 model tsb menggunakan metrics MSE dan MAE , maka didapatkan nilai nya : <br>
+
+**1.Hybrid Recommendation** 
+```
+    MSE Score : 5.549969151046974
+    MAE Score : 2.1381952595599367
+```
+_didapatkan nilai MSE nya sekitar 5.55 . yg artinya, Kesalahan Kuadrat dari model dalam memberikan sebuah rating sebesar 5.55 ._ <br>
+_dan untuk nilai MAE nya sebesar 2.14 . yg artinya, kesalahan absolut/mutlak antara Rating asli dgn Rating Prediksi sebsar 2.14 ._ <br>
+<br>
+
+**2. Neural Collaborative Filtering**
+```
+        MSE  : 1.3125025090296838
+        MAE  : 0.8522835856709821
+```
+_didapatkan nilai MSE nya sekitar 1.31 . yg artinya, Kesalahan Kuadrat dari model dalam memberikan sebuah rating sebesar 1.31 ._ <br>
+_dan untuk nilai MAE nya sebesar 0.85 . yg artinya, kesalahan absolut/mutlak antara Rating asli dgn Rating Prediksi sebsar 0.85 ._ <br>
+<br>
+**Khusus NCF , Kita bisa memplot Loss Function nya seperti ini :** 
+![output](https://github.com/user-attachments/assets/b206cea2-9645-4098-98f3-d2c91e79b9ef)
+
+### Analisis Kesimpulan :
+
+1. **Jawaban dari pertanyaan masalah 1 :** <br>
+   Hasil evaluasi menunjukkan bahwa NCF memiliki MSE sebesar 1.31 dan MAE sebesar 0.85, yang lebih rendah dibandingkan dengan Hybrid Recommendation (MSE: 5.55,       MAE: 2.14). Hal ini menunjukkan bahwa NCF mampu memberikan rekomendasi yang lebih akurat dan lebih sesuai dengan preferensi pengguna, sehingga berhasil             mengatasi permasalahan sulitnya menemukan anime yang relevan di platform streaming. <br>
+2. **Jawaban dari pertanyaan masalah 2 :** <br>
+    Salah satu tantangan utama dalam sistem rekomendasi adalah masalah cold-start bagi pengguna dan anime baru. Pendekatan hybrid filtering (CBF + CF) memang membantu mengatasi keterbatasan data interaksi awal, namun hasil evaluasi menunjukkan bahwa pendekatan NCF lebih unggul dalam menangani cold-start, karena menggunakan pembelajaran mendalam untuk menangkap pola interaksi yang lebih kompleks, bahkan ketika data masih terbatas.
+3. **Jawaban dari pertanyaan 3 :** <br>
+    Metode Hybrid Recommendation cenderung masih memberikan rekomendasi berdasarkan genre atau tema yang telah dikenal oleh pengguna, sehingga kurang memberikan keberagaman pilihan. Sementara itu, NCF lebih fleksibel dalam mengenali pola interaksi baru, sehingga memungkinkan sistem untuk menawarkan rekomendasi yang lebih beragam dan tidak terbatas pada satu kategori tertentu.
+
+
 
 **---Ini adalah bagian akhir laporan---**
+## References 
 
-_Catatan:_
-- _Anda dapat menambahkan gambar, kode, atau tabel ke dalam laporan jika diperlukan. Temukan caranya pada contoh dokumen markdown di situs editor [Dillinger](https://dillinger.io/), [Github Guides: Mastering markdown](https://guides.github.com/features/mastering-markdown/), atau sumber lain di internet. Semangat!_
-- Jika terdapat penjelasan yang harus menyertakan code snippet, tuliskan dengan sewajarnya. Tidak perlu menuliskan keseluruhan kode project, cukup bagian yang ingin dijelaskan saja.
+> 1. KURNIA RAMADHAN PUTRA, MOHAMMAD ADITIYA RACHMAN (2024). 
+Perbandingan Metode Content-based, Collaborative dan Hybrid Filtering pada Sistem Rekomendasi Lagu. Source [[1]](https://ejurnal.itenas.ac.id/index.php/mindjournal/article/view/12447/0)
+
+> 2. CrunchyRoll (2025). Which platforms are capitalizing on the global anime boom?. Source [[2]](https://www.parrotanalytics.com/insights/global-streaming-value-anime-netflix-crunchyroll-hulu/)
+
+> 3. Mehul Gupta (2023). Recommendation Systems using Neural Collaborative Filtering (NCF) explained with codes. Source [[3]](https://medium.com/data-science-in-your-pocket/recommendation-systems-using-neural-collaborative-filtering-ncf-explained-with-codes-21a97e48a2f7)
+
+> 4. Altolyto Sitanggang, Ali Dongan Harahap, Alif Karimullah, Yohanes Anjar Dewantara, Chaerur Rozikin (2023). Sistem Rekomendasi Anime Menggunakan Metode Singular Value Decomposition (SVD) dan Cosine Similarity. Source [[4]](https://jurnal.utu.ac.id/JTI/article/viewFile/7787/4290)
+
+> 5.  Hilmi Hidayat Arfisko, Agung Toto Wibowo (2022) .  Sistem Rekomendasi Film Menggunakan Metode Hybrid Collaborative Filtering Dan Content-Based Filtering.  [[5]](https://repositori.telkomuniversity.ac.id/pustaka/files/177772/jurnal_eproc/sistem-rekomendasi-film-menggunakan-metode-hybrid-collaborative-filtering-dan-content-based-filtering.pdf?__cf_chl_tk=I2hDFMFZJsRL8.0LVEoLgeEkJP1tAeo9T3aTesXlTtM-1743131374-1.0.1.1-8dotxjzmAnV6lTqOI8DzHtaLWaQD6qdrVPKu9eCMHkA)
+
+> 6.  Paul Magron, Cédric Févotte (2021) . Neural content-aware collaborative filtering for cold-start music recommendation. [[6]](https://arxiv.org/abs/2102.12369)
+
+> 7. Kiran R , Pradeep Kumar , Bharat Bhasker (2020) . DNNRec: A novel deep learning based hybrid recommender system. Source [[7]](https://www.sciencedirect.com/science/article/abs/pii/S0957417419307717)   
