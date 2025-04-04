@@ -67,6 +67,28 @@ Dataset Anime ini terdiri dari 2 Tabel utama, Yaitu Data *User* dan data *Anime*
 
 **Data User ini terdiri dari 7813737 baris dan 3 kolom**
 
+Nilai missing untuk anime data :
+```
+anime_id      0
+name          0
+genre        62
+type         25
+episodes      0
+rating      230
+members       0
+dtype: int64
+```
+
+Nilai Missing untuk rating data :
+```
+user_id     0
+anime_id    0
+rating      0
+dtype: int64
+```
+
+
+
 ## Solutions
 
 ### 1. Univariate Analysis
@@ -188,6 +210,9 @@ memory usage: 672.5+ KB
 3. **Menghapus Duplikat data** <br>
 
 *Alasannya : Untuk menghindari Bias yg terjadi*
+```
+ anime_df.duplicated(subset=['name']).sum()
+```
 ```Duplicated data from Anime data : 0
 Duplicated data from User data : 1
 ```
@@ -224,13 +249,30 @@ memory usage: 667.8+ KB
 
 _`genre_list` dan `type_encoded` merupakan data kategorial yg sudah di encoded_
 
-6. **Split dataset menjadi Train and Test data**  <br>
+6. **Normalization** <br>
+pada normalization, saya menggunakan teknik **Min-Max Normalization** dengan rentang 0 - 10 untuk mengubah nilai menjadi lebih kecil.
+*Alasannya : Supaya nilai data nya menjadi seragam dan lebih cepat buat dilatih.*
+
+    ```
+    minmax = MinMaxScaler(feature_range=(0,10))
+    combined_df['members'] = minmax.fit_transform(combined_df[['members']])
+    ```
+
+7. **Split dataset menjadi Train and Test data**  <br>
    *Alasannya : Karena supaya bisa mengevaluasi sebuah model dgn data yg belum terlihat sebelumnya.*
 
    ```Data Type of Train data : <class 'numpy.ndarray'>
    Data Type of Test data : <class 'numpy.ndarray'>
    Train data shape : (5703429,)
    Test data shape : (633715,)
+   ```
+
+8. **TF-IDF**
+   TF-IDF (Term Frequency-Inverse Document Frequency) adalah metode yang digunakan untuk mengukur seberapa penting suatu kata dalam sebuah dokumen di dalam kumpulan dokumen.
+   *Alasannya : TF-IDF menggabungkan kedua nilai ini untuk memberikan bobot pada kata-kata yang relevan dalam dokumen. Kata yg sering muncul akan bernilai rendah, sebaliknya kata yg jarang muncul akan bernilai tinggi.*
+   ```
+   tfidf = TfidfVectorizer(encoding='utf-8', lowercase = True, stop_words= None, ngram_range= (1,1))    # USE TF-IDF TO TRANSFORM CATEGORICAL GENRE TO NUMERICAL GENRE
+    genre_encoded = tfidf.fit_transform(anime_df['genre_preprocessed'])
    ```
 
 ## Modeling
